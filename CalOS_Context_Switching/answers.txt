@@ -1,0 +1,23 @@
+1. Where is the PCB class defined?
+	PCB was originally defined on line 71 of calos.py, however I moved it to the beginning of calos.py.
+
+2. What information does a PCB object contain?
+	The PCB object contains _name, _pid, _entry_point, _mem_low,_mem_high, _state, _registers, and _quantum
+
+3. When is a PCB created? Which line in which file creates a PCB?
+	The PCB is created when load_program is called, load_program is called the user types in 'L <start address> <tape_name>' to load in a program.  The code for 'load_program' is in main at line 167
+
+4. What process states have been defined?
+	New, Ready, Running, Waiting, Done
+
+5. Regarding the variable current_proc: Where has it been defined and what is its significance?
+	current_proc is defined in calos at line 85 as 'None' (orgianlly, it was line 7, but I moved the code around).  current_proc is the current process's PCB, it is significant because when switching contexts, we will need to change this variable to the new process
+  
+6. In the TimerController class, what does code that reads
+ 	with self._mutex:
+ 	    code here... 		
+do? I.e., what does with mean in python and why does the code use it? 
+	The 'code here...' will only run if self._mutex is "unlocked".  This is a way of preventing race conditions and data overwriting.  If the lock is unlocked, this call will lock it, and then run the 'code here...', then unlock it. 
+7. In the TimerController class, explain what the code does when the countdown goes to 0 (i.e., the time expires).
+	When the mutex lock is unlocked, it locks it, generates an interupt, sets the interupt line to be true, then released the lock, and sets the timer's state to NOT_RUNNING.  This should stop the process from running, and initiate a context switch.
+

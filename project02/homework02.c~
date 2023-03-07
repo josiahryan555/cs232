@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <unistd.h>
+
+
+int copy(char* src, char* dest) {
+  FILE *srcp;
+  FILE *destp;
+
+  //opens source file
+  srcp = fopen(src, "r");   //https://www.tutorialspoint.com/c_standard_library/c_function_fopen.htm
+  
+  if (srcp == NULL || access(src, R_OK) == -1 ) {//checks if source file exists
+    perror("Error: ");      //problem 2. access use stat function
+    fclose(srcp);
+    return -1;
+  } 
+   
+  //checks to make sure a file 'dest' does not exist
+  if ( access(dest, F_OK) == 0 ) { // if file exists, it exits
+    fprintf(stderr, "Error: destination file already exists\n");
+    return -1;
+  } else { //if file does not exist, it makes and opens a new file  
+    destp = fopen(dest, "w");
+  }
+
+  do //code taken from 'https://www.geeksforgeeks.org/fgetc-fputc-c/'
+  {
+    // Taking input single character at a time
+    char c = fgetc(srcp);
+ 
+    // Checking for end of file
+    if (feof(srcp))
+      break ;
+    fputc(c, destp);
+   }  while(1);
+  
+  //clean up
+  printf("success!\n");
+  fclose(srcp);
+  fclose(destp);
+  return 0;
+}
+
+int main(char* src, char* dest) {
+  //(int argc char *argv[])
+  return copy("text.txt", "lol.txt");
+  //return copy(src, dest);  problem 1.
+  //copy(str);
+}
+//current problems:
+//  1. it does not work passing values in via cl (line 46)
+//  2. it will still run if given a directory as a src
+//    -problem is probably with access accepting dirs (line 12)
+//to do:
+//  check through program requirements and make sure it meets all of them
+//  document: name, date, function description
+
+/* homework02.c */

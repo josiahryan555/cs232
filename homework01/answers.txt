@@ -1,0 +1,9 @@
+1. 1024
+2. r0, r1, r2, pc
+3. JLZ takes a register and a jump location.  if the value at the register is less than 0, pc is changed to the jump location
+4. between every instruction
+5. S <start> <end> shows what is in memory between the start and end addresses
+6. ! toggles debuging on and off
+7. a file loaded in can contain comments and empty lines, but they are removed when stored in RAM
+8. enter_program() or poke_ram()
+9. yes and the address is outputed so the user can know where, and run the program later

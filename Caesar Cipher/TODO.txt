@@ -1,0 +1,15 @@
+-add in date/time/other documentation (server)
+
+
+-code documentation
+
+
+try adding another try except block and checking the cipher stuff there
+
+
+
+
+https://www.infoworld.com/article/2853780/socket-programming-for-scalable-systems.html?page=2
+
+java CaesarCipherServer 5000
+java CaesarCipherClient localhost 5000

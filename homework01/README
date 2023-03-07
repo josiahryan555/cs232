@@ -1,0 +1,7 @@
+My program runs fine batched on mult.asm, but doesn't run at all on fib.asm.  
+
+It gives me the same error if I try to run it batched or ir I try to just execute fib.asm by itself (by typing X <addr>). Because of that I don't think it's a problem with the code I wrote, but with the source code somewhere. I spent forever trying to fix it and made no headway, even redownloading the original source code and pasteing in my changes section by section.
+
+at the root of the error was a problem in type comparasions that was handled by code that I didn't touch (or possibly touched and broke without knowing it) 
+
+
